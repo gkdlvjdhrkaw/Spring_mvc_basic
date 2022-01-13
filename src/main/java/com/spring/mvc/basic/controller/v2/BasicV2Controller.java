@@ -80,4 +80,29 @@ public class BasicV2Controller {
     }
 
 
+
+    // ======= bmi 문제 =======//
+
+    @GetMapping("/bmi/form")
+    public String bmiForm() {
+        return "/bmi-form";
+    }
+
+    @PostMapping("/bmi/calc")
+    public String bmiCalc(BmiData bmiData, Model model) {
+        //공식 : kg / (m * m)
+        double kg = bmiData.getWeight();
+        double m = bmiData.getHeight() / 100;
+        double bmi = kg / (m * m);
+
+        //반올림
+        bmi = Math.round(bmi * 100) / 100.0;
+
+        model.addAttribute("userName", bmiData.getName());
+        model.addAttribute("bmi", bmi);
+
+        return "bmi-result";
+    }
+
+
 }
