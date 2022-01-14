@@ -11,18 +11,15 @@
         label {
             display: block;
         }
-
         .score-list>li {
             margin-bottom: 10px;
         }
-
         .score-list>li:first-child {
             font-size: 1.2em;
             color: blue;
             font-weight: 700;
             border-bottom: 1px solid skyblue;
         }
-
         .del-btn {
             width: 10px;
             height: 10px;
@@ -34,13 +31,11 @@
             font-size: 0.7em;
             padding: 6px;
         }
-
         .del-btn:hover {
             background: orangered;
         }
-
         section.score {
-            padding: 200px 50px 100px;
+            /* padding: 200px 50px 100px; */
             font-size: 1.5em;
         }
     </style>
@@ -79,10 +74,10 @@
 
                 <c:forEach var="s" items="${scores}">
                     <li>
-                        # 학번: ${s.stuNum}, 이름: <a href="/score/detail?stuNum=${s.stuNum}">${s.name}</a>, 국어:
+                        # 학번: ${s.stuNum}, 이름: <a href="/score/detail?stuNum=${s.stuNum}">${s.markName}</a>, 국어:
                         ${s.kor}점,
                         영어: ${s.eng}점, 수학: ${s.math}점, 총점: ${s.total}점
-                        , 평균: ${s.average}점
+                        , 평균: ${s.average}점, 학점: ${s.grade}
                         <a class="del-btn" href="/score/delete?stuNum=${s.stuNum}">삭제</a>
                     </li>
                 </c:forEach>
@@ -96,13 +91,10 @@
 
     <script>
         const $ul = document.querySelector('.score-list');
-
         $ul.addEventListener('click', e => {
             if (!e.target.matches('a.del-btn')) return;
-
             e.preventDefault();
             //console.log('클릭이벤트 발동!');
-
             if (confirm('정말로 삭제하시겠습니까?')) {
                 //삭제 진행
                 location.href = e.target.getAttribute('href');
@@ -110,9 +102,7 @@
                 //삭제 취소
                 return;
             }
-
         });
-
         //홈화면으로 버튼 이벤트
         const $homeBtn = document.getElementById('go-home');
         $homeBtn.onclick = e => {
@@ -122,4 +112,7 @@
 
 </body>
 
+
 </html>
+
+
