@@ -76,6 +76,6 @@ public class BoardController {
         return "redirect:/board/content?boardNo="+modArticle.getBoardNo();
     }
 
-
+//ㅇㅋ
 
 }

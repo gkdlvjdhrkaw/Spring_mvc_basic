@@ -10,4 +10,6 @@ public class ModifyBoard {
     private String writer;
     private int boardNo;
 
+
+    //ㅋㅇ
 }
