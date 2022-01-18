@@ -12,34 +12,41 @@ import java.util.Map;
 @Log4j2
 public class MemoryScore implements ScoreRepository{
 
-    private static Map<Integer, Score> scoreMap = new HashMap<>();
+    private static final Map<Integer, Score> scoreMap = new HashMap<>();
 
+    static {
+        scoreMap.put(1, new Score("홍길동", 95, 70, 50));
+        scoreMap.put(2, new Score("박영희", 60, 95, 100));
+        scoreMap.put(3, new Score("김철수", 90, 40, 80));
+    }
 
     @Override
     public boolean save(Score score) {
         scoreMap.put(score.getStuNum(), score);
-        log.info("ScoreMap");
-        return false;
+        return true;
     }
 
     @Override
     public List<Score> findAll() {
-        List<Score> scores = new ArrayList<>();
+        // lIST<Score> scoreList = (List<Score) scoreMap.values();
+        List<Score> scoreList = new ArrayList<>();
 
         for (Integer n : scoreMap.keySet()) {
-            scores.add(scoreMap.get(n));
+            scoreList.add(scoreMap.get(n));
         }
-        return scores;
+        return scoreList;
     }
 
     @Override
     public Score findOne(int stuNum) {
-        return null;
+        return scoreMap.get(stuNum);
     }
 
     @Override
     public boolean remove(int stuNum) {
         scoreMap.remove(stuNum);
-        return false;
+        return true;
     }
+    // ㄹㅇ
+    // ㄹㅇ
 }
