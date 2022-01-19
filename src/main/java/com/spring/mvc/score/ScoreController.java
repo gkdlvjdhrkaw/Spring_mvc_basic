@@ -1,6 +1,7 @@
 package com.spring.mvc.score;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +13,11 @@ import java.util.List;
 @Log4j2
 public class ScoreController {
 
-    private final ScoreService scoreRepository;
+    private final ScoreService scoreService;
 
-    public ScoreController(ScoreService scoreRepository) {
-        this.scoreRepository = scoreRepository;
+    @Autowired
+    public ScoreController(ScoreService ScoreService) {
+        this.scoreService = ScoreService;
     }
 
 
@@ -29,7 +31,7 @@ public class ScoreController {
     @GetMapping("/score/list")
     public String list(Model model) {
         log.info("/score/list GET !");
-        List<Score> scoreList = scoreRepository.findAll();
+        List<Score> scoreList = scoreService.findAll();
         model.addAttribute("scores", scoreList);
         return "score/score-list";
     }
@@ -40,7 +42,7 @@ public class ScoreController {
         log.info("/score/register POST - " + score);
         score.calcTotal(); // 총점, 평균 계산
         score.changeMarkName(); //마킹 네임 저장
-        scoreRepository.save(score);
+        scoreService.save(score);
         return "redirect:/score/list";
     }
 
@@ -48,7 +50,7 @@ public class ScoreController {
     @GetMapping("/score/delete")
     public String delete(int stuNum) {
         log.info("/score/delete GET - " + stuNum);
-        scoreRepository.remove(stuNum); //삭제 명령 위임
+        scoreService.remove(stuNum); //삭제 명령 위임
         return "redirect:/score/list";
     }
 
@@ -56,7 +58,7 @@ public class ScoreController {
     @GetMapping("/score/detail")
     public String detail(int stuNum, Model model) {
         log.info("/score/detail GET! - " + stuNum);
-        Score score = scoreRepository.findOne(stuNum);
+        Score score = scoreService.findOne(stuNum);
         model.addAttribute("s", score);
         return "score/detail";
     }
