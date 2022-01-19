@@ -9,12 +9,12 @@
 <body>
 
     <form action="/bmi/calc" method="POST">
-        # 이름 : <input type="text" name="name"> <br>
-        # 신장 : <input type="text" name="height" placeholder="cm로 입력"> <br>
-        # 체중 : <input type="text" name="weight" placeholder="kg로 입력" > <br>
-
-        <button type="submit">확인</button>
-
+         # 이름: <input type="text" name="name">  <br>
+         # 신장: <input type="text" name="height" placeholder="cm로 입력">  <br>
+         # 체중: <input type="text" name="weight" placeholder="kg로 입력">  <br>
+         <button type="submit">확인</button>
     </form>
 
 </body>
+
+</html>

@@ -13,5 +13,4 @@ public class UserInfo {
     private String address;
     private int age;
     private List<String> hobby;
-
 }

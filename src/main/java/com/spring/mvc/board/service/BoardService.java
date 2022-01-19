@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -39,7 +38,6 @@ public class BoardService {
         boardRepository.insertArticle(board);
     }
 
-
     public void deleteArticle(int boardNo) {
         boardRepository.deleteArticle(boardNo);
     }
@@ -52,4 +50,7 @@ public class BoardService {
     public void modifyArticle(Board board) {
         boardRepository.modifyArticle(board);
     }
+
+
+
 }

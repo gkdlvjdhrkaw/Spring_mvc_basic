@@ -20,6 +20,4 @@ public interface BoardRepository {
 
     //게시글 수정
     void modifyArticle(Board article);
-
-
 }

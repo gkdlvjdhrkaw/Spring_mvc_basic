@@ -11,7 +11,7 @@ public interface ScoreRepository {
     List<Score> findAll();
 
     //개별 점수 정보 조회
-    Score findOne(int stuNum);  // 일단 비움
+    Score findOne(int stuNum);
 
     //점수 삭제
     boolean remove(int stuNum);

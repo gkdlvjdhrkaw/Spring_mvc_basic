@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
+@Repository("mr")
 @Log4j2
 public class MemoryScore implements ScoreRepository{
 

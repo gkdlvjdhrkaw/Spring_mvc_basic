@@ -12,7 +12,6 @@ class EmployeeTest {
         Employee e2 = new Employee("박영희", "부장");
         System.out.println("e1 = " + e1);
         System.out.println("e2 = " + e2);
-
     }
 
 }

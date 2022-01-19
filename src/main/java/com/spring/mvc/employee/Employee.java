@@ -6,18 +6,18 @@ import lombok.*;
 @AllArgsConstructor
 public class Employee {
 
-    // 연속된 인련번호
+    //연속된 일련번호
     private static int seq;
 
-    private int empNum; // 사원번호
-    private String empName; // 사원명
-    private String position; // 직급
+    private int empNum; //사원번호
+    private String empName; //사원명
+    private String position; //직급
 
     public Employee() {
         this.empNum = ++seq;
     }
 
-    public Employee(String empName, String position) { // 두개만 받으려고 생성자 생성함 / 컨트롤 + 쉬프트 + t
+    public Employee(String empName, String position) {
         this();
         this.empName = empName;
         this.position = position;

@@ -1,15 +1,17 @@
 package com.spring.mvc.board.repository;
 
 import com.spring.mvc.board.domain.Board;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MemoryBoardRepository implements BoardRepository{
+@Repository
+public class MemoryBoardRepository implements BoardRepository {
 
-        private static Map<Integer, Board> boardMap = new HashMap<>();
+    private static Map<Integer, Board> boardMap = new HashMap<>();
 
     static {
         boardMap.put(1, new Board( "김철수", "안녕하심까.,,", "저는 김철수이올시다,,, 반갑습니다."));
@@ -48,6 +50,4 @@ public class MemoryBoardRepository implements BoardRepository{
         if (boardMap.containsKey(boardNo))
             boardMap.put(boardNo, article); //수정
     }
-
-
 }

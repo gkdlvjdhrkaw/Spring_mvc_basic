@@ -38,11 +38,9 @@
         <ul>
             <c:forEach var="emp" items="${empList}">
                 <li>
-                    # 사번 : ${emp.empNum},  이름 : ${emp.empName},  직급 : ${emp.position}
-                        <a href="/emp/delete?empNum=${emp.empNum}">
-                        삭제
-                        </a>
-                 </li>
+                # 사번: ${emp.empNum}, 이름: ${emp.empName}, 직급: ${emp.position}
+                 <a href="/emp/delete?empNum=${emp.empNum}">삭제</a>
+                </li>
             </c:forEach>
         </ul>
 

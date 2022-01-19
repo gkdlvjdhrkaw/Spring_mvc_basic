@@ -20,5 +20,4 @@ class MemoryEmpRepositoryTest {
             System.out.println("e = " + e);
         }
     }
-
 }

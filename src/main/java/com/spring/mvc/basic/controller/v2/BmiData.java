@@ -2,12 +2,11 @@ package com.spring.mvc.basic.controller.v2;
 
 import lombok.*;
 
-@Setter @Getter
-@NoArgsConstructor @AllArgsConstructor
+@Setter @Getter @ToString
+@AllArgsConstructor @NoArgsConstructor
 public class BmiData {
 
     private String name;
     private double height;
     private double weight;
-
 }

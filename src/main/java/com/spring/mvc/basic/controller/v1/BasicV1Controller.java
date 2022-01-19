@@ -6,23 +6,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 
-// 컨트롤러 : 브라우저의 요청을 받아서 처리
-@Controller  // @Component 랑 같음. 명시적으로 컨트롤러 역활임을 표시
+// HTTP API 방식 : REST API사용
+
+//컨트롤러: 브라우저의 요청을 받아서 처리
+@Controller //@Component랑 같음. 명시적으로 컨트롤러 역할임을 표시
 public class BasicV1Controller {
 
-    // 요청 처리 매서드
-    @GetMapping("/v1/hello")  // 클라이언트가 /v1/hello 라고 GET으로 요청했을 시 작동
-    @ResponseBody  // 응답 내용에 관한 것
+    //요청 처리 메서드
+
+    @GetMapping("/v1/hello") // 클라이언트가 /v1/hello라고 GET으로 요청했을 시 작동
+    @ResponseBody  //응답 내용에 관한 것, 브라우저에게 데이터를 직접 리턴
     public String hello() {
-        System.out.println("/v1/hello GET 가나다라마바사!!!");
-        return "안녕~~ 손님~~!!";
+        System.out.println("/v1/hello GET!!! 가나다라마바사");
+        return "선생님컴퓨터: 안녕~~ 손님~~!!";
     }
 
     @GetMapping("/sign-in")
     @ResponseBody
     public String login() {
-        System.out.println("/sign-in GET!! 요청 !!");
-        return "로그인이 완료되었어요!!";
+        System.out.println("/sign-in GET!! 요청!!");
+        return "선생님컴퓨터: 로그인 요청하셨어요?";
     }
 
     @GetMapping("/food/menu")
@@ -32,7 +35,6 @@ public class BasicV1Controller {
         foodList.add("볶음밥");
         foodList.add("탕수육");
         foodList.add("짜장면");
-        foodList.add("군만두");
 
         return foodList;
     }
@@ -42,16 +44,18 @@ public class BasicV1Controller {
     public Map<String, String> hobby() {
         Map<String, String> hobbies = new HashMap<>();
         hobbies.put("activity", "축구");
-        hobbies.put("study", "영어");
+        hobbies.put("study", "영어회화");
         hobbies.put("home", "영화감상");
 
         return hobbies;
     }
 
-    @GetMapping("/user/infor")
+    @GetMapping("/user/info")
     @ResponseBody
     public UserInfo userInfo() {
-        return new UserInfo("고길동", "대전시 서구", 50, Arrays.asList("청소", "요리", "농구"));
+        return new UserInfo("고길동",
+                "대전시 서구",
+                50, Arrays.asList("청소", "요리", "농구"));
     }
 
     @GetMapping("/user/all")

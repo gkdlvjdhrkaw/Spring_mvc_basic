@@ -1,68 +1,64 @@
 package com.spring.mvc.score;
 
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
 @Log4j2
 public class ScoreController {
 
-    // private final ScoreRepository scoreRepository;
-    private final ScoreService scoreService;
+    private final ScoreService scoreRepository;
 
-    @Autowired
-    public ScoreController(ScoreService scoreService) {
-        this.scoreService = scoreService;
+    public ScoreController(ScoreService scoreRepository) {
+        this.scoreRepository = scoreRepository;
     }
 
-    // 요청
+
+    //점수 입력화면 열기
     @GetMapping("/score/form")
-    public String list() {
-        LocalDateTime now = LocalDateTime.now();
-        return "/score/score-list";
+    public String form() {
+        return "score/score-list";
     }
 
-    // 전체조회
+    //점수 전체조회 요청처리
     @GetMapping("/score/list")
     public String list(Model model) {
-        log.info("/score/list GET !!");
-        List<Score> scoreList = scoreService.findAll();
+        log.info("/score/list GET !");
+        List<Score> scoreList = scoreRepository.findAll();
         model.addAttribute("scores", scoreList);
-        return "/score/score-list";
+        return "score/score-list";
     }
 
-    // 등록
+    //점수 등록 요청처리
     @PostMapping("/score/register")
     public String register(Score score) {
         log.info("/score/register POST - " + score);
-        // score.calcTotal(); // 총점, 평균 계산
-        // score.changeMarkName(); //마킹 네임 저장
-        scoreService.save(score);
+        score.calcTotal(); // 총점, 평균 계산
+        score.changeMarkName(); //마킹 네임 저장
+        scoreRepository.save(score);
         return "redirect:/score/list";
     }
 
-    // 삭제
+    //점수 삭제 요청 처리
     @GetMapping("/score/delete")
     public String delete(int stuNum) {
-        log.info("score/delete GET - " + stuNum);
-        scoreService.remove(stuNum); // 삭제 명령 위임
+        log.info("/score/delete GET - " + stuNum);
+        scoreRepository.remove(stuNum); //삭제 명령 위임
         return "redirect:/score/list";
     }
 
-    // 상세보기
+    //점수 상세보기 요청
     @GetMapping("/score/detail")
     public String detail(int stuNum, Model model) {
         log.info("/score/detail GET! - " + stuNum);
-        Score score = scoreService.findOne(stuNum);
+        Score score = scoreRepository.findOne(stuNum);
         model.addAttribute("s", score);
         return "score/detail";
     }
-    // ㄹㅇ
+
 }

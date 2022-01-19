@@ -23,26 +23,28 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-    // 글 작성 화면 요청
+    //글 작성 화면 요청
     @GetMapping("/board/write")
     public String write() {
         return "board/write";
     }
 
-    // 글 작성 처리 요청
+    //글 작성 처리 요청
     @PostMapping("/board/write")
     public String write(Board article) {
         boardService.insert(article);
         return "redirect:/board/list";
     }
 
-    // 글 목록 요청
+    //글 목록 요청
     @GetMapping("/board/list")
     public String list(Model model) {
         List<Board> articles = boardService.getArticles();
         model.addAttribute("articles", articles);
         return "board/list";
     }
+
+
 
     //글 삭제 요청
     @GetMapping("/board/delete")
@@ -75,7 +77,5 @@ public class BoardController {
         boardService.modifyArticle(board);
         return "redirect:/board/content?boardNo="+modArticle.getBoardNo();
     }
-
-//ㅇㅋ
 
 }

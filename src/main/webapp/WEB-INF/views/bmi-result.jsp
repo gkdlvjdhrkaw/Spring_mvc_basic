@@ -8,10 +8,11 @@
 </head>
 <body>
 
-</body>
 
-        <h1>
+    <h3>
         ${userName}님의 bmi지수는 ${bmi}입니다.
-        </h1>
+    </h3>
+
+</body>
 
 </html>

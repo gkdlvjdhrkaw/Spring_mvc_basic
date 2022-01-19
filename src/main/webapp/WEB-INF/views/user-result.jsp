@@ -8,21 +8,21 @@
 </head>
 <body>
 
-</body>
 
-        <h1>
-        아이디는 ${usinfo.id} 이고 <br>
-        비밀번호는 ${usinfo.pw} 입니다. <br>
-        이름은 ${usinfo.userName} 이고 ~~~ <br>
-        취미는 ${usinfo.hobby} 등등.. <br>
-
-        <c:if test="${usinfo.mail == true}">
-        메일은 수신 가능해요. <br>
+    <h3>
+        # 아이디: ${u.id}  <br>
+        # 비번: ${u.pw} <br>
+        # 이름: ${u.userName} <br>
+        # 메일 수신여부:
+        <c:if test="${u.mail == true}">
+          예  <br>
         </c:if>
+        <c:if test="${u.mail == false}">
+          아니오  <br>
+        </c:if>
+        # 취미: ${u.hobby} <br>
+    </h3>
 
-         <c:if test="${usinfo.mail == false}">
-         메일은 수신 불가능해요. <br>
-         </c:if>
-        </h1>
+</body>
 
 </html>

@@ -29,8 +29,8 @@
                     <input type="checkbox" name="hobby" value="음악감상"> 음악감상
                     <input type="checkbox" name="hobby" value="영화보기"> 영화보기 <br>
             # 메일 수신여부:
-            <input type="radio" name="mail"> 예
-            <input type="radio" name="mail"> 아니오 <br>
+            <input type="radio" name="mail" value="true"> 예
+            <input type="radio" name="mail" value="false"> 아니오 <br>
 
             <button type="submit">회원가입하기</button>
         </form>
