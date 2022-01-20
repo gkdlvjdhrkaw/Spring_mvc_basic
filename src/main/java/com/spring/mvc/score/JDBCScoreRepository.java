@@ -1,5 +1,4 @@
 package com.spring.mvc.score;
-
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -63,6 +62,7 @@ public class JDBCScoreRepository implements ScoreRepository {
             while (rs.next()) {
                 scoreList.add(new Score(rs));
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,11 +72,54 @@ public class JDBCScoreRepository implements ScoreRepository {
 
     @Override
     public Score findOne(int stuNum) {
+        try {
+            Class.forName(driverName);
+            Connection conn = DriverManager.getConnection(url, uid, upw);
+
+            String sql = "SELECT * FROM score WHERE stu_num = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setInt(1, stuNum);
+
+            //3-2. SQL 실행 명령
+            // a : INSERT, UPDATE, DELETE - executeUpdate();
+            // b : SELECT                 - executeQuery();
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) { //마우스 커서 이동 (행 커서)
+                return new Score(rs);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public boolean remove(int stuNum) {
+        try {
+            //1. 드라이버 로딩
+            Class.forName(driverName);
+            //2. 연결정보 객체 생성
+            Connection conn = DriverManager.getConnection(url, uid, upw);
+
+            //3. SQL실행객체 생성
+            String sql = "DELETE FROM score WHERE stu_num = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            //3-1. ?값을 채우기 (순번은 1번부터 시작)
+            pstmt.setInt(1, stuNum);
+
+            //3-2. SQL 실행 명령
+            // a : INSERT, UPDATE, DELETE - executeUpdate();
+            // b : SELECT                 - executeQuery();
+            int result = pstmt.executeUpdate(); // 성공한 쿼리의 수 리턴
+            if (result == 1) System.out.println("삭제 성공!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 }

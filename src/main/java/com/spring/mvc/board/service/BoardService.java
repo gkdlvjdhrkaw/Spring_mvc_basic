@@ -3,6 +3,7 @@ package com.spring.mvc.board.service;
 import com.spring.mvc.board.domain.Board;
 import com.spring.mvc.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Autowired
-    public BoardService(BoardRepository boardRepository) {
+    public BoardService(@Qualifier("br") BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
@@ -22,14 +23,16 @@ public class BoardService {
     public List<Board> getArticles() {
         List<Board> boardList = boardRepository.getArticles();
 
+        /*
         //중간처리: 리스트의 인덱스를 전부 뒤집기
 //        boardList.sort(Collections.reverseOrder());
         List<Board> sortedList = new ArrayList<>();
         for (int i = boardList.size() - 1; i >= 0 ; i--) {
             sortedList.add(boardList.get(i));
         }
+        */
 
-        return sortedList;
+        return boardList;
     }
 
 
@@ -43,14 +46,12 @@ public class BoardService {
     }
 
     public Board getContent(int boardNo) {
-
+        boardRepository.upViewCount(boardNo);
         return boardRepository.getContent(boardNo);
     }
 
     public void modifyArticle(Board board) {
         boardRepository.modifyArticle(board);
     }
-
-
 
 }

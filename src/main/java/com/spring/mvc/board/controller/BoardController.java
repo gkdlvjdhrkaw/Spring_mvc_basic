@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -45,7 +46,6 @@ public class BoardController {
     }
 
 
-
     //글 삭제 요청
     @GetMapping("/board/delete")
     public String delete(int boardNo) {
@@ -56,7 +56,7 @@ public class BoardController {
     //글 상세보기 요청
     @GetMapping("/board/content")
     public String content(int boardNo, Model model) {
-        model.addAttribute("article", boardService.getContent(boardNo));
+        model.addAttribute("b", boardService.getContent(boardNo));
         return "board/content";
     }
 
@@ -77,5 +77,6 @@ public class BoardController {
         boardService.modifyArticle(board);
         return "redirect:/board/content?boardNo="+modArticle.getBoardNo();
     }
+
 
 }
