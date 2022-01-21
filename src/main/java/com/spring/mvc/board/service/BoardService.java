@@ -1,23 +1,32 @@
 package com.spring.mvc.board.service;
 
 import com.spring.mvc.board.domain.Board;
-import com.spring.mvc.board.repository.BoardRepository;
+import com.spring.mvc.board.repository.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class BoardService {
 
+    /*
     private final BoardRepository boardRepository;
 
     @Autowired
     public BoardService(@Qualifier("br") BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
+    */
+
+    private final BoardMapper boardRepository;
+
+    @Autowired
+    public BoardService(BoardMapper boardRepository) {
+        this.boardRepository = boardRepository;
+    }
+
 
     //글 전체 조회 중간처리
     public List<Board> getArticles() {

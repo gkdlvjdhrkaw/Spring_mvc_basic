@@ -37,6 +37,7 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+
     //글 목록 요청
     @GetMapping("/board/list")
     public String list(Model model) {
