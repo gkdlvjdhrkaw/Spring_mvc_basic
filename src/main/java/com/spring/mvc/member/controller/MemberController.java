@@ -42,5 +42,5 @@ public class MemberController {
         memberService.signUp(member);
         return "redirect:/";
     }
-
+// ㅇㅋ
 }

@@ -14,4 +14,5 @@ public class Member {
     private String email; //이메일
     private Timestamp regDate; //가입날짜
     private Auth auth; //권한 (관리자, 일반)
+    // ㅇㅋ
 }

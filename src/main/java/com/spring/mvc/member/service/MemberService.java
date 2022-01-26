@@ -28,4 +28,5 @@ public class MemberService {
     public boolean isDuplicateEmail(String email) {
         return memberRepository.isDuplicateEmail(email) == 1;
     }
+    // ㅇㅋ
 }

@@ -17,4 +17,5 @@ public interface MemberRepository {
 
     //이메일 중복체크
     int isDuplicateEmail(String inputKeyword);
+    // ㅇㅋ
 }
