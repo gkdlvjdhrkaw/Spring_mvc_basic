@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class ScoreService {
 
-    // JDBC 사용
+    //JDBC 사용
     /*
     private final ScoreRepository scoreRepository;
 
@@ -16,9 +16,9 @@ public class ScoreService {
     public ScoreService(@Qualifier("jr") ScoreRepository scoreRepository) {
         this.scoreRepository = scoreRepository;
     }
-    */
+     */
 
-    // 마이바티스 사용
+    //마이바티스 사용
     private final ScoreMapper scoreRepository;
 
     @Autowired

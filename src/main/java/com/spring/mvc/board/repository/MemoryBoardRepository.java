@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository("mbr")
+@Repository
 public class MemoryBoardRepository implements BoardRepository {
 
     private static Map<Integer, Board> boardMap = new HashMap<>();
@@ -50,5 +50,6 @@ public class MemoryBoardRepository implements BoardRepository {
         if (boardMap.containsKey(boardNo))
             boardMap.put(boardNo, article); //수정
     }
+
 
 }

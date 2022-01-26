@@ -6,7 +6,7 @@ import java.util.List;
 
 @Setter @Getter @ToString
 @AllArgsConstructor @NoArgsConstructor
-class User {
+public class User {
 
     private String id;
     private String pw;

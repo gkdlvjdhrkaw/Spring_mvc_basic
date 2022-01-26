@@ -67,11 +67,9 @@ public class DataBaseCRUD {
         }
     }
 
-
     @Test
     @DisplayName("회원 정보를 삭제해야 한다.")
     void deleteTest() {
-
         try {
             //1. 드라이버 로딩
             Class.forName(driverName);
@@ -83,25 +81,22 @@ public class DataBaseCRUD {
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             //3-1. ?값을 채우기 (순번은 1번부터 시작)
-            pstmt.setString(1, "abc1234");
+            pstmt.setString(1, "zzz1234");
 
             //3-2. SQL 실행 명령
             // a : INSERT, UPDATE, DELETE - executeUpdate();
             // b : SELECT                 - executeQuery();
             int result = pstmt.executeUpdate(); // 성공한 쿼리의 수 리턴
-            if (result == 1) System.out.println("입력 성공!");
+            if (result == 1) System.out.println("삭제 성공!");
 
         } catch (Exception e) {
 
         }
-
     }
-
 
     @Test
     @DisplayName("회원의 이름과 나이를 수정할 수 있다.")
     void updateTest() {
-
         try {
             //1. 드라이버 로딩
             Class.forName(driverName);
@@ -109,31 +104,32 @@ public class DataBaseCRUD {
             Connection conn = DriverManager.getConnection(url, uid, upw);
 
             //3. SQL실행객체 생성
-            String sql = "UPDATE tbl_member " + "SET username = ?, age = ?" + "WHERE account = ?";
+            String sql = "UPDATE tbl_member " +
+                         "SET username=?, age=? " +
+                         "WHERE account = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             //3-1. ?값을 채우기 (순번은 1번부터 시작)
-            pstmt.setString(1, "고길고길동");
-            pstmt.setInt(2, 999 );
-            pstmt.setString(3, "cccc23");
+            pstmt.setString(1, "수정한이름");
+            pstmt.setInt(2, 999);
+            pstmt.setString(3, "ghi1234");
 
             //3-2. SQL 실행 명령
             // a : INSERT, UPDATE, DELETE - executeUpdate();
             // b : SELECT                 - executeQuery();
             int result = pstmt.executeUpdate(); // 성공한 쿼리의 수 리턴
-            if (result == 1) System.out.println("입력 성공!");
+            System.out.println("result = " + result);
+            if (result == 1) System.out.println("수정 성공!");
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
-
     }
 
 
     @Test
-    @DisplayName("회원정보를 전체조회 해야한다.")
-    void selectAll() {
-
+    @DisplayName("회원정보를 전체조회해야 한다.")
+    void selectAllTest() {
         try {
             //1. 드라이버 로딩
             Class.forName(driverName);
@@ -148,29 +144,27 @@ public class DataBaseCRUD {
 
             //3-2. SQL 실행 명령
             // a : INSERT, UPDATE, DELETE - executeUpdate();
-            // b : SELECT                 - executeQuery()
+            // b : SELECT                 - executeQuery();
             ResultSet rs = pstmt.executeQuery();
-            
-            while (rs.next()) { // 마우스 커서 이동 (행 커서)
 
-                // 컬럼 데이터 추출하기 (추출데이터에 해당하는 열 이름)
+            while (rs.next()) { //마우스 커서 이동 (행 커서)
+
+                //컬럼 데이터 추출하기 (추출데이터에 해당하는 열 이름)
                 String username = rs.getString("username");
                 System.out.println("username = " + username);
                 int age = rs.getInt("age");
                 System.out.println("age = " + age);
-                System.out.println("=============================");
+                System.out.println("===================================");
             }
 
         } catch (Exception e) {
 
         }
-
     }
 
     @Test
     @DisplayName("회원 1명의 모든정보를 조회하고 출력해야 한다.")
     void selectOneTest() {
-
         try {
             //1. 드라이버 로딩
             Class.forName(driverName);
@@ -182,11 +176,11 @@ public class DataBaseCRUD {
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             //3-1. ?값을 채우기 (순번은 1번부터 시작)
-            pstmt.setString(1, "박영희");
+            pstmt.setString(1, "def1234");
 
             //3-2. SQL 실행 명령
             // a : INSERT, UPDATE, DELETE - executeUpdate();
-            // b : SELECT                 - executeQuery()
+            // b : SELECT                 - executeQuery();
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) { //마우스 커서 이동 (행 커서)
@@ -202,11 +196,9 @@ public class DataBaseCRUD {
                 System.out.printf("%s, %s, %s, %s, %d\n", account, password, username, gender, age);
             }
 
-
         } catch (Exception e) {
 
         }
-
     }
 
 

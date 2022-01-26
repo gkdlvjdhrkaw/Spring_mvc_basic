@@ -5,7 +5,7 @@
 
 <mapper namespace="com.spring.mvc.member.repository.MemberRepository">
 
-    <!-- 회원가입 기능 -->
+    <!--  회원가입 기능  -->
     <insert id="register">
         INSERT INTO member
             (account, password, name, email, auth)
@@ -17,21 +17,21 @@
         <result column="reg_date" property="regDate" />
     </resultMap>
 
-    <!-- 단일 회원 조회기능 -->
+    <!-- 단일 회원 조회기능  -->
     <select id="findMember" resultMap="memberMap">
         SELECT * FROM member
         WHERE account = #{account}
     </select>
 
-    <!-- 아이디 중복확인 기능 -->
-    <select id ="isDuplicateId" resultType="int">
+    <!--  아이디 중복확인 기능  -->
+    <select id="isDuplicateId" resultType="int">
         SELECT COUNT(*) FROM member
         WHERE account = #{inputKeyword}
     </select>
 
-    <select id ="isDuplicateEmail" resultType="int">
+    <select id="isDuplicateEmail" resultType="int">
         SELECT COUNT(*) FROM member
-        WHERE account = #{inputKeyword}
+        WHERE email = #{inputKeyword}
     </select>
 
 </mapper>

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MemoryScoreRepositoryTest {
 
-    MemoryScore memoryScoreRepository = new MemoryScore();
+    MemoryScoreRepository memoryScoreRepository = new MemoryScoreRepository();
 
     @Test
     @DisplayName("성적정보를 추가하고 전체 조회할 수 있다.")
