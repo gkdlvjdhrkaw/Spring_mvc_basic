@@ -28,5 +28,29 @@ public class MemberService {
     public boolean isDuplicateEmail(String email) {
         return memberRepository.isDuplicateEmail(email) == 1;
     }
-    // ㅇㅋ
+
+    // 로그인 중간처리
+    public LoginFlag login(String inputId, String inputPw) {
+        Member member = memberRepository.findMember(inputId);
+        if (member != null) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            if (!encoder.matches(inputPw, member.getPassword())) {
+                // 비번 틀림
+                return LoginFlag.NO_PW;
+            } else {
+                // 로그인 성공
+                return LoginFlag.SUCCESS;
+            }
+        } else {
+            // 가입 안함
+            return LoginFlag.NO_ID;
+        }
+    }
+
+    // 회원 정보 가져오기
+    public Member getMember(String account) {
+        return memberRepository.findMember((account));
+    }
+
+
 }

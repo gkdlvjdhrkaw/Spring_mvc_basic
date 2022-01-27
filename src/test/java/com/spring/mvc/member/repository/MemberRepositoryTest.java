@@ -48,9 +48,6 @@ class MemberRepositoryTest {
 
     }
 
-
-
-
     @Test
     @DisplayName("로그인 검증을 정확히 수행해야 한다.")
     void loginTest() {
